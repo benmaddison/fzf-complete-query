@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+cache_dir="${XDG_CACHE_HOME:-$HOME/.cache}/notmuch-addresses"
+
+mkdir -p "$cache_dir"
+
+( notmuch address --deduplicate=address \
+                --exclude=true \
+                --output=sender \
+                --output=recipients \
+                --format=json \
+                '*' || exit 1 ) | \
+jq 'if type == "array" and length then . else "ERROR: Expecting non-empty array, got \"\(.)\"\n" | halt_error end' \
+    >"$cache_dir/address-cache.json" \
+    && echo "notmuch address cache re-built successfully" \
+    || exit 1
+
+exit 0
