@@ -60,7 +60,7 @@ My layout is as follows:
 
 Therefore, to link things into place (from my local clone of this repo):
 ```bash
-SCRIPTS_DIR="$(git rev-parse --show-toplevel)/scrips"
+SCRIPTS_DIR="$(git rev-parse --show-toplevel)/scripts"
 ln -s "$SCRIPTS_DIR/notmuch/post-new" "$XDG_DATA_HOME/mail/.notmuch/hooks/"
 mkdir -p "$XDG_CONFIG_HOME/mutt/scripts"
 ln -s "$SCRIPTS_DIR/mutt/*.sh" "$XDG_CONFIG_HOME/mutt/scripts/"
