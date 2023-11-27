@@ -10,7 +10,7 @@ reset="$(tput sgr0)"
 
 regexp="s/^(.+\s)?<(.+)>$/${name}\1${reset}${brackets}<${reset}\2${brackets}>${reset}/"
 
-# execcute search
+# execute search
 jq -r '.[] | "\(."name-addr")" ' \
       ${address_cache} | \
 sed -E ${regexp} | \
